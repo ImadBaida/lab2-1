@@ -38,6 +38,7 @@ DPM-Robot {
       translation 0 -0.0236 -0.04961
     }
     EV3-LargeMotor {
+      name "A"
       translation 0.056 0.0222 -0.0259
       children [
         Wheel {
@@ -47,6 +48,7 @@ DPM-Robot {
       ]
     }
     EV3-LargeMotor {
+      name "D"
       translation -0.056 0.0222 -0.0259
       children [
         Wheel {
