@@ -14,8 +14,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.4427324086512167 -0.20932450941692182 -0.8718780098656331 5.289392690469964
-  position 1.1587859968245442 -0.05058729387806055 2.7156383409123324
+  orientation -0.1144232621089095 -0.30305503872034534 -0.9460787285393145 3.827754499687548
+  position 0.3425066587394393 0.4801338325501361 0.5855367547862834
 }
 DPM-Floor {
   dimension 7 7
@@ -32,7 +32,7 @@ DPM-Floor {
   ]
 }
 DPM-Robot {
-  translation 0.1524 0.1524 0.07
+  translation 0.1524 0.1524 0.1
   children [
     BallCaster {
       translation 0 -0.0236 -0.04961
@@ -63,7 +63,6 @@ DPM-Robot {
     EV3 {
     }
   ]
-  controller "Lab2"
 }
 TexturedBackground {
 }
