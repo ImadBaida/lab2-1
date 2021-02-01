@@ -97,6 +97,10 @@ public class Odometer implements Runnable {
       // Update previous and current tacho counts (add 3 more lines)
       
       prevTacho[LEFT] = currTacho[LEFT];
+      prevTacho[RIGHT] = currTacho[RIGHT];
+      currTacho[LEFT] = leftMotor.getTachoCount();
+      currTacho[RIGHT] = rightMotor.getTachoCount(); 
+          
 
       // TODO Implement this method below so it updates the deltaPosition
       updateDeltaPosition(prevTacho, currTacho, theta, deltaPosition);
