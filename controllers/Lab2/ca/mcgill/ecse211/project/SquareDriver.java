@@ -28,8 +28,17 @@ public class SquareDriver {
    * @param distance in feet (tile sizes), may be negative
    */
   public static void moveStraightFor(double distance) {
-    // TODO Set motor speeds and rotate them by the given distance.
-    // This method should not return until the robot has finished moving.
+    // Sets motor speeds and rotate them by the given distance.
+    // Uses blocking argument to not return until the robot has finished moving.
+    setSpeed(FORWARD_SPEED);
+    //calculate angle to rotate
+    int rotAngle = convertDistance(distance); 
+    //return set to true, so that rightMotor starts rotating at the same time
+    leftMotor.rotate(rotAngle, true);   
+    //return set to false, so that the method does not return until rotation finished
+    rightMotor.rotate(rotAngle, false); 
+    stopMotors();
+
   }
   
   /**
@@ -51,8 +60,9 @@ public class SquareDriver {
    * @return the wheel rotations necessary to cover the distance in degrees
    */
   public static int convertDistance(double distance) {
-    // TODO Compute and return the correct value.
-    return 0;
+    //calculates rotation in degrees based on distance and wheel radius. 
+    //No need to make conversions since both values are given in metres.
+    return (int) ((180 / (Math.PI * WHEEL_RAD)) * distance);
   }
 
   /**
@@ -81,7 +91,8 @@ public class SquareDriver {
    * @param speed the speed in degrees per second
    */
   public static void setSpeed(int speed) {
-    // TODO Implement this by reusing an existing method (1 line)
+    // Reuses existing method to set both speeds to same value
+    setSpeeds(speed, speed); 
   }
   
   /**
@@ -91,7 +102,8 @@ public class SquareDriver {
    * @param rightSpeed the speed of the right motor in degrees per second
    */
   public static void setSpeeds(int leftSpeed, int rightSpeed) {
-    // TODO
+    leftMotor.setSpeed(leftSpeed);
+    rightMotor.setSpeed(rightSpeed);
   }
   
   /**
@@ -100,7 +112,8 @@ public class SquareDriver {
    * @param acceleration the acceleration in degrees per second squared
    */
   public static void setAcceleration(int acceleration) {
-    // TODO
+    leftMotor.setAcceleration(acceleration);
+    rightMotor.setAcceleration(acceleration);
   }
 
 }

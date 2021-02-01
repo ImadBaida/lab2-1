@@ -88,8 +88,14 @@ public class Odometer implements Runnable {
     // TODO Complete the following tasks
     // Reset motor tacho counts to zero
     
+    currTacho[LEFT] = 0;
+    currTacho[RIGHT] = 0;
+    prevTacho[LEFT] = 0;
+    prevTacho[RIGHT] = 0;
+    
     while (true) {
       // Update previous and current tacho counts (add 3 more lines)
+      
       prevTacho[LEFT] = currTacho[LEFT];
 
       // TODO Implement this method below so it updates the deltaPosition
