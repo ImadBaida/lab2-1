@@ -182,6 +182,8 @@ public class Odometer implements Runnable {
     isResetting = true;
     try {
       x += deltaPosition[0];
+      y += deltaPosition[1]; 
+      theta += deltaPosition[2]; 
       
       // TODO Update y and theta. Remember to keep theta within 360 degrees
       
