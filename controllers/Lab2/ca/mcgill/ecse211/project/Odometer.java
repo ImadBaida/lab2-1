@@ -190,7 +190,17 @@ public class Odometer implements Runnable {
    * @param theta the value of theta in degrees
    */
   public void setXyt(double x, double y, double theta) {
-    // TODO Complete based on setX() method below
+    lock.lock();
+    isResetting = true;
+    try {
+      this.x = x;
+      this.y = y;
+      this.theta = theta;
+      isResetting = false;
+      doneResetting.signalAll();
+    } finally {
+      lock.unlock();
+    }
   }
 
   /**
@@ -216,7 +226,15 @@ public class Odometer implements Runnable {
    * @param y the value of y
    */
   public void setY(double y) {
-    // TODO
+    lock.lock();
+    isResetting = true;
+    try {
+      this.y = y;
+      isResetting = false;
+      doneResetting.signalAll();
+    } finally {
+      lock.unlock();
+    }
   }
 
   /**
@@ -225,7 +243,15 @@ public class Odometer implements Runnable {
    * @param theta the value of theta
    */
   public void setTheta(double theta) {
-    //TODO 
+    lock.lock();
+    isResetting = true;
+    try {
+      this.theta = theta;
+      isResetting = false;
+      doneResetting.signalAll();
+    } finally {
+      lock.unlock();
+    }
   }
 
 }
