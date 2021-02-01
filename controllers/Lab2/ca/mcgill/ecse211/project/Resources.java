@@ -47,9 +47,9 @@ public class Resources {
   // Robot hardware
 
   /** The left motor. */
-  public static final RegulatedMotor leftMotor = Motor.A;
+  public static final RegulatedMotor leftMotor = Motor.D;
   
   /** The right motor. */
-  public static final RegulatedMotor rightMotor = Motor.D;
+  public static final RegulatedMotor rightMotor = Motor.A;
   
 }

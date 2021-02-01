@@ -31,12 +31,13 @@ public class SquareDriver {
     // Sets motor speeds and rotate them by the given distance.
     // Uses blocking argument to not return until the robot has finished moving.
     setSpeed(FORWARD_SPEED);
-    //calculate angle to rotate
-    int rotAngle = convertDistance(distance); 
+    //calculate angle to rotate. Multiply by TILE_SIZE to get distance in metres. 
+    int rotAngle = convertDistance(distance * TILE_SIZE);  
     //return set to true, so that rightMotor starts rotating at the same time
     leftMotor.rotate(rotAngle, true);   
     //return set to false, so that the method does not return until rotation finished
     rightMotor.rotate(rotAngle, false); 
+    //stops motors
     stopMotors();
 
   }
@@ -50,7 +51,19 @@ public class SquareDriver {
    * @param angle the angle by which to turn, in degrees
    */
   public static void turnBy(double angle) {
-    // TODO Hint: similar to moveStraightFor(), but use a minus sign
+    // Sets motor speeds and rotate them by the given distance.
+    // Uses blocking argument to not return until the robot has finished moving.
+    setSpeed(FORWARD_SPEED);
+    //calculate angle to rotate. 
+    int rotAngle = convertAngle(angle);  
+    //return set to true, so that rightMotor starts rotating at the same time
+    leftMotor.rotate(rotAngle, true);   
+    //return set to false, so that the method does not return until rotation finished. 
+    //uses negative for a clockwise turn.
+    rightMotor.rotate(-rotAngle, false); 
+    //stops motors
+    stopMotors();
+    
   }
   
   /**
@@ -62,7 +75,8 @@ public class SquareDriver {
   public static int convertDistance(double distance) {
     //calculates rotation in degrees based on distance and wheel radius. 
     //No need to make conversions since both values are given in metres.
-    return (int) ((180 / (Math.PI * WHEEL_RAD)) * distance);
+    return (int) (distance * 180 / (Math.PI * WHEEL_RAD));
+    
   }
 
   /**
@@ -73,8 +87,8 @@ public class SquareDriver {
    * @return the wheel rotations necessary to rotate the robot by the angle in degrees
    */
   public static int convertAngle(double angle) {
-    // TODO Compute and return the correct value. Hint: you can reuse convertDistance()
-    return 0;
+    // Computes and returns the correct value. Hint: you can reuse convertDistance()
+    return (int) (angle * BASE_WIDTH / WHEEL_RAD);
   }
   
   /**
