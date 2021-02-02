@@ -75,7 +75,7 @@ public class SquareDriver {
   public static int convertDistance(double distance) {
     //calculates rotation in degrees based on distance and wheel radius. 
     //No need to make conversions since both values are given in metres.
-    return (int) (distance * 180 / (Math.PI * WHEEL_RAD));
+    return (int) (distance * 180.0 / (Math.PI * WHEEL_RAD));
     
   }
 
@@ -87,8 +87,9 @@ public class SquareDriver {
    * @return the wheel rotations necessary to rotate the robot by the angle in degrees
    */
   public static int convertAngle(double angle) {
-    // Computes and returns the correct value. Hint: you can reuse convertDistance()
-    return (int) (angle * BASE_WIDTH / WHEEL_RAD);
+    
+    return (int) (0.5 * (angle * (BASE_WIDTH / WHEEL_RAD)));
+
   }
   
   /**
