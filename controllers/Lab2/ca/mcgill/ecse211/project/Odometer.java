@@ -135,8 +135,8 @@ public class Odometer implements Runnable {
     // displacements in m: converts tacho difference to radians, 
     // multiplies by radius
     
-    double dl = (((currTacho[LEFT] - prevTacho[LEFT]) * Math.PI / 180) * WHEEL_RAD);
-    double dr = (((currTacho[RIGHT] - prevTacho[RIGHT]) * Math.PI / 180) * WHEEL_RAD);
+    double dl = (((curr[LEFT] - prev[LEFT]) * Math.PI / 180) * WHEEL_RAD);
+    double dr = (((curr[RIGHT] - prev[RIGHT]) * Math.PI / 180) * WHEEL_RAD);
     
     // Compute change in heading and x and y components of displacement
     
