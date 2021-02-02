@@ -102,7 +102,7 @@ public class Odometer implements Runnable {
       currTacho[LEFT] = leftMotor.getTachoCount();
       currTacho[RIGHT] = rightMotor.getTachoCount();
 
-      // TODO Implement this method below so it updates the deltaPosition
+      // Updates the deltaPosition
       updateDeltaPosition(prevTacho, currTacho, theta, deltaPosition);
 
       // Update odometer values by completing and calling the relevant method
@@ -130,10 +130,10 @@ public class Odometer implements Runnable {
     double dy = 0;
     double dtheta = 0;
     
-    // TODO Calculate changes in x, y, theta based on current and previous tachometer counts:
-    // Compute left and right wheel displacements
-    //displacements in m: converts tacho difference to radians, 
-    //multiplies by radius
+    // Calculates changes in x, y, theta based on current and previous tachometer counts:
+    // Computes left and right wheel displacements
+    // displacements in m: converts tacho difference to radians, 
+    // multiplies by radius
     
     double dl = (((currTacho[LEFT] - prevTacho[LEFT]) * Math.PI / 180) * WHEEL_RAD);
     double dr = (((currTacho[RIGHT] - prevTacho[RIGHT]) * Math.PI / 180) * WHEEL_RAD);
