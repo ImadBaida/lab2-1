@@ -106,8 +106,10 @@ public class Odometer implements Runnable {
       updateDeltaPosition(prevTacho, currTacho, theta, deltaPosition);
 
       // Update odometer values by completing and calling the relevant method
-
+      updateOdometerValues();
+      
       // Print odometer information to the console
+      System.out.printf("\tXyt: %.0f\n",odometer.getXyt());
 
       // Wait until the next physics step to run the next iteration of the loop
     }
@@ -128,6 +130,8 @@ public class Odometer implements Runnable {
     double dtheta = 0;
     
     // TODO Calculate changes in x, y, theta based on current and previous tachometer counts:
+     
+    
     // Compute left and right wheel displacements
     // Compute change in heading and x and y components of displacement
 
