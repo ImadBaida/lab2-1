@@ -25,7 +25,7 @@ public class Resources {
   public static final double WHEEL_RAD = 0.027;
   
   /** The wheel-base width in meters. */
-  public static final double BASE_WIDTH = 0.154;
+  public static final double BASE_WIDTH = 0.2009;
 
   
   /** The speed at which the robot moves forward in degrees per second. */
