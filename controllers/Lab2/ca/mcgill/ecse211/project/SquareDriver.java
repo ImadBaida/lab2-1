@@ -16,6 +16,7 @@ public class SquareDriver {
   public static void driveInASquare(double length) {
     setAcceleration(ACCELERATION);
     for (int i = 0; i < 4; i++) {
+      setSpeed(FORWARD_SPEED);
       moveStraightFor(length);
       turnBy(90.0); // degrees clockwise
     }
