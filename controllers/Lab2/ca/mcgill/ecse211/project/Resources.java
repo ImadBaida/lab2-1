@@ -26,12 +26,13 @@ public class Resources {
   
   /** The wheel-base width in meters. */
   public static final double BASE_WIDTH = 0.154;
+
   
   /** The speed at which the robot moves forward in degrees per second. */
-  public static final int FORWARD_SPEED = 300;
+  public static final int FORWARD_SPEED = 500;
   
   /** The speed at which the robot rotates in degrees per second. */
-  public static final int ROTATE_SPEED = 300;
+  public static final int ROTATE_SPEED = 500;
   
   /** The motor acceleration in degrees per second squared. */
   public static final int ACCELERATION = 3000;

@@ -20,9 +20,14 @@ public class Main {
     ExecutionController.setNumberOfParties(NUMBER_OF_THREADS);
     ExecutionController.performPhysicsStepsInBackground();
     
-    // TODO Start the odometer thread (1 line) 
+    //start the odometer thread
+    Thread odo = new Thread(odometer);
+    odo.start();
     
     SquareDriver.driveInASquare(SQUARE_LENGTH);
+
+    
+    
     System.exit(0);
   }
 

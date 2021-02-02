@@ -53,7 +53,7 @@ public class SquareDriver {
   public static void turnBy(double angle) {
     // Sets motor speeds and rotate them by the given distance.
     // Uses blocking argument to not return until the robot has finished moving.
-    setSpeed(FORWARD_SPEED);
+    setSpeed(ROTATE_SPEED);
     //calculate angle to rotate. 
     int rotAngle = convertAngle(angle);  
     //return set to true, so that rightMotor starts rotating at the same time

@@ -6,6 +6,7 @@ import static simlejos.ExecutionController.waitUntilNextStep;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import simlejos.ExecutionController;
 
 /**
  * The odometer class keeps track of the robot's (x, y, theta) position.
@@ -94,18 +95,23 @@ public class Odometer implements Runnable {
     prevTacho[RIGHT] = 0;
     
     while (true) {
-      // Update previous and current tacho counts (add 3 more lines)
+      // Update previous and current tacho counts 
       
       prevTacho[LEFT] = currTacho[LEFT];
+      prevTacho[RIGHT] = currTacho[RIGHT];
+      currTacho[LEFT] = leftMotor.getTachoCount();
+      currTacho[RIGHT] = rightMotor.getTachoCount();
 
       // TODO Implement this method below so it updates the deltaPosition
       updateDeltaPosition(prevTacho, currTacho, theta, deltaPosition);
 
       // Update odometer values by completing and calling the relevant method
-
+      updateOdometerValues();
       // Print odometer information to the console
-
+      printPosition();
       // Wait until the next physics step to run the next iteration of the loop
+      
+      waitUntilNextStep();
     }
   }
   
@@ -118,6 +124,7 @@ public class Odometer implements Runnable {
    * @param deltas the deltaPosition array (x, y, theta)
    */
   public static void updateDeltaPosition(int[] prev, int[] curr, double theta, double[] deltas) {
+    //temporarily convert to radians to faciliate calculations
     theta = Math.toRadians(theta);
     double dx = 0;
     double dy = 0;
@@ -125,9 +132,24 @@ public class Odometer implements Runnable {
     
     // TODO Calculate changes in x, y, theta based on current and previous tachometer counts:
     // Compute left and right wheel displacements
+    //displacements in m: converts tacho difference to radians, 
+    //multiplies by radius
+    
+    double dl = (((currTacho[LEFT] - prevTacho[LEFT]) * Math.PI / 180) * WHEEL_RAD);
+    double dr = (((currTacho[RIGHT] - prevTacho[RIGHT]) * Math.PI / 180) * WHEEL_RAD);
+    
     // Compute change in heading and x and y components of displacement
-
-    // Set deltas like this
+    
+    //displacement vector magnitude is average of left and right displacement
+    double disp = 0.5 * (dl + dr);
+    
+    //dtheta in radians is roughly the difference between the displacements divided by the wheelbase
+    dtheta = (dl - dr) / (BASE_WIDTH);
+    
+    dx = disp * Math.sin(theta + dtheta);
+    dy = disp * Math.cos(theta + dtheta);
+    
+    // Set deltas 
     deltas[0] = dx;
     deltas[1] = dy;
     deltas[2] = Math.toDegrees(dtheta);
@@ -138,8 +160,8 @@ public class Odometer implements Runnable {
    */
   public void printPosition() {
     lock.lock();
-    // TODO
-    System.out.println("Print odometer x, y, theta here"); 
+    //convert to cm before printing
+    System.out.println("X: " + x * 100 + " Y: " + y * 100 + " angle: " + theta + " deg"); 
     lock.unlock();
   }
   
@@ -178,7 +200,11 @@ public class Odometer implements Runnable {
     isResetting = true;
     try {
       x += deltaPosition[0];
-      
+      y += deltaPosition[1];
+      //if updated theta is positive, simply take the remainder. 
+      //If it is negative, add the negative remainder to 360.
+      theta = (theta + deltaPosition[2] >= 0) ? ((theta + deltaPosition[2]) % 360) : 
+        (360 + ((theta + deltaPosition[2]) % 360));
       // TODO Update y and theta. Remember to keep theta within 360 degrees
       
       isResetting = false;
@@ -259,5 +285,6 @@ public class Odometer implements Runnable {
       lock.unlock();
     }
   }
+  
 
 }
